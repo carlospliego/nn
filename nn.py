@@ -59,19 +59,12 @@ def load_file_bits(data):
         data.append(row) 
     return data
 
-# should take in a 
-def load_testing_data():
-    return load_file_bits("/src/testing_files/*")
-
-def load_training_data():
-    return load_file_bits("/src/training_files/*")
-
 if __name__ == "__main__":
 
     #initializing the neuron class
     neural_network = NeuralNetwork()
 
-    training_data = load_training_data()
+    training_data = load_file_bits("/src/training_files/*")
     training_inputs = np.array(training_data)
 
     training_outputs = np.array([[
@@ -80,6 +73,6 @@ if __name__ == "__main__":
     ]]).T
 
     neural_network.train(training_inputs, training_outputs, 15000)
-    testing_data = load_testing_data()
+    testing_data = load_file_bits("/src/testing_files/*")
 
     print('Classification', neural_network.think(np.array(testing_data)))
