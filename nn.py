@@ -42,13 +42,7 @@ class NeuralNetwork():
         output = self.sigmoid(np.dot(inputs, self.synaptic_weights))
         return output
 
-
-if __name__ == "__main__":
-
-    #initializing the neuron class
-    neural_network = NeuralNetwork()
-    
-    # load list of images
+def load_training_data():
     training_files = sorted(glob.glob("/src/training_files/*"))
     training_data = []
     for file in training_files: 
@@ -63,8 +57,15 @@ if __name__ == "__main__":
                 else:
                     row.append(0)
         training_data.append(row) 
-    
-    #training data consisting of 4 examples--3 input values and 1 output
+    return training_data
+
+
+if __name__ == "__main__":
+
+    #initializing the neuron class
+    neural_network = NeuralNetwork()
+
+    training_data = load_training_data()
     training_inputs = np.array(training_data)
 
     training_outputs = np.array([[
@@ -74,10 +75,7 @@ if __name__ == "__main__":
 
     #training taking place
     neural_network.train(training_inputs, training_outputs, 15000)
-
-    # print("Ending Weights After Training: ")
-    # print(neural_network.synaptic_weights)
-  
+    
     print('is a circle test.png', neural_network.think(np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])))
     print('not a circle test2.png', neural_network.think(np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])))
     print("Wow, we did it!")
