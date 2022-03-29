@@ -66,7 +66,6 @@ def load_testing_data():
 def load_training_data():
     return load_file_bits("/src/training_files/*")
 
-
 if __name__ == "__main__":
 
     #initializing the neuron class
@@ -80,9 +79,7 @@ if __name__ == "__main__":
         0,0,0,0,0 # Not Circle
     ]]).T
 
-    #training taking place
     neural_network.train(training_inputs, training_outputs, 15000)
+    testing_data = load_testing_data()
 
-    print('is a circle test.png', neural_network.think(np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])))
-    print('not a circle test2.png', neural_network.think(np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])))
-    print("Wow, we did it!")
+    print('Classification', neural_network.think(np.array(testing_data)))
