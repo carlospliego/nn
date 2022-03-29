@@ -4,4 +4,4 @@ shell:
   build: .
   volumes:
     - .:/src
-  command: python start.py
+  command: python nn.py
