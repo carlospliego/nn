@@ -1,0 +1,7 @@
+shell:
+  working_dir: /src
+  container_name: python_shell
+  build: .
+  volumes:
+    - .:/src
+  command: python start.py
