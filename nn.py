@@ -42,10 +42,10 @@ class NeuralNetwork():
         output = self.sigmoid(np.dot(inputs, self.synaptic_weights))
         return output
 
-def load_training_data():
-    training_files = sorted(glob.glob("/src/training_files/*"))
-    training_data = []
-    for file in training_files: 
+def load_file_bits(data):
+    files = sorted(glob.glob(data))
+    data = []
+    for file in files: 
         # load the bitmap
         im = Image.open(file).convert('L')
         p = np.array(im)
@@ -56,8 +56,15 @@ def load_training_data():
                     row.append(1)
                 else:
                     row.append(0)
-        training_data.append(row) 
-    return training_data
+        data.append(row) 
+    return data
+
+# should take in a 
+def load_testing_data():
+    return load_file_bits("/src/testing_files/*")
+
+def load_training_data():
+    return load_file_bits("/src/training_files/*")
 
 
 if __name__ == "__main__":
@@ -75,7 +82,7 @@ if __name__ == "__main__":
 
     #training taking place
     neural_network.train(training_inputs, training_outputs, 15000)
-    
+
     print('is a circle test.png', neural_network.think(np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])))
     print('not a circle test2.png', neural_network.think(np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])))
     print("Wow, we did it!")
